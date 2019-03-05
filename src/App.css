@@ -19,6 +19,8 @@
 
 .color-list {
   display: flex;
+  align-content: center;
+  justify-content: center;
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
