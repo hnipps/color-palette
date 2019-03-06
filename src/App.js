@@ -14,6 +14,8 @@ class App extends Component {
     };
   }
 
+  handleClick = colorInfo => event => this.setState({ colorInfo });
+
   render() {
     const colorSwatches = [
       { color: '#ff0000', label: 'red' },
@@ -52,7 +54,11 @@ class App extends Component {
           <ul className="color-list">
             {colorSwatches.map(colorInfo => (
               <li className="color-list__item">
-                <ColorSwatch element="button" {...colorInfo} />
+                <ColorSwatch
+                  element="button"
+                  {...colorInfo}
+                  onClick={this.handleClick(colorInfo)}
+                />
               </li>
             ))}
           </ul>
