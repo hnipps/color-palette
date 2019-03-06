@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import { ColorSwatch } from './components/ColorSwatch';
+import { ColorSwatch } from './components/color-swatch/ColorSwatch';
+import { ColorList } from './components/color-list/ColorList';
 
 class App extends Component {
   constructor(props) {
@@ -51,17 +52,7 @@ class App extends Component {
             variant="large"
             {...this.state.colorInfo}
           />
-          <ul className="color-list">
-            {colorSwatches.map(colorInfo => (
-              <li className="color-list__item">
-                <ColorSwatch
-                  element="button"
-                  {...colorInfo}
-                  onClick={this.handleClick(colorInfo)}
-                />
-              </li>
-            ))}
-          </ul>
+          <ColorList colorSwatches={colorSwatches} handleClick={this.handleClick} />
         </div>
       </div>
     );
