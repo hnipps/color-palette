@@ -4,6 +4,16 @@ import './App.css';
 import { ColorSwatch } from './components/ColorSwatch';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      colorInfo: {
+        color: '#ff0000',
+        label: 'red'
+      }
+    };
+  }
+
   render() {
     const colorSwatches = [
       { color: '#ff0000', label: 'red' },
@@ -26,7 +36,7 @@ class App extends Component {
       { color: '#DDA0DD', label: 'plum' },
       { color: '#4B0082', label: 'indigo' },
       { color: '#008080', label: 'teal' },
-      { color: '#1E90FF', label: 'dodger blue' },
+      { color: '#1E90FF', label: 'dodger blue' }
     ];
     return (
       <div className="app">
@@ -34,10 +44,15 @@ class App extends Component {
           <h1 className="header__content">Color World</h1>
         </header>
         <div className="main">
+          <ColorSwatch
+            element="div"
+            variant="large"
+            {...this.state.colorInfo}
+          />
           <ul className="color-list">
             {colorSwatches.map(colorInfo => (
               <li className="color-list__item">
-                <ColorSwatch {...colorInfo} />
+                <ColorSwatch element="button" {...colorInfo} />
               </li>
             ))}
           </ul>

@@ -2,10 +2,15 @@ import React from 'react';
 
 import './color-swatch.css';
 
-export const ColorSwatch = ({ color, label }) => {
+export const ColorSwatch = ({ color, label, element: Element, variant }) => {
   return (
-    <div className="color-swatch" style={{ background: color }}>
+    <Element
+      className={['color-swatch', variant && `color-swatch--${variant}`]
+        .join(' ')
+        .trim()}
+      style={{ background: color }}
+    >
       <label className="color-swatch__label">{label}</label>
-    </div>
+    </Element>
   );
 };

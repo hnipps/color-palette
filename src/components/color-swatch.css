@@ -6,6 +6,13 @@
   width: 10rem;
   border-radius: 0.25rem;
   font-family: Arial, Helvetica, sans-serif;
+  border: 0;
+  font-size: 1.5rem;
+}
+
+.color-swatch--large {
+  height: 40rem;
+  width: 40rem;
 }
 
 .color-swatch__label {
