@@ -6,13 +6,14 @@ import { colorSwatchSize, listItemMargin } from '../../js-env-variables';
 
 import './color-list.css';
 
+const maxItemsPerLine = (lineWidth, itemSize) =>
+  Math.floor(lineWidth / itemSize);
+
 const isSwatchHidden = (listWidth, swatchIndex, swatchWidth) =>
-  swatchIndex + 1 > Math.floor(listWidth / (swatchWidth + 2 * listItemMargin));
+  swatchIndex + 1 > maxItemsPerLine(listWidth, swatchWidth);
 
 export const ColorList = ({ colorSwatches, handleClick }) => {
   const [listWidth, setListWidth] = React.useState(-1);
-  console.log(isSwatchHidden(100, 9, 10));
-
   return (
     <div className="color-list__container">
       <button className="color-list__controls">&lt;</button>
@@ -22,16 +23,23 @@ export const ColorList = ({ colorSwatches, handleClick }) => {
       >
         {({ measureRef }) => (
           <ul ref={measureRef} className="color-list">
-            {colorSwatches.map((colorInfo, i) => (
-              <li key={i} className="color-list__item">
-                <ColorSwatch
-                  element="button"
-                  {...colorInfo}
-                  onClick={handleClick(colorInfo)}
-                  disabled={isSwatchHidden(listWidth, i, colorSwatchSize)}
-                />
-              </li>
-            ))}
+            {colorSwatches.map((colorInfo, i) => {
+              const hidden = isSwatchHidden(
+                listWidth,
+                i,
+                colorSwatchSize + 2 * listItemMargin
+              );
+              return (
+                <li key={i} className="color-list__item" hidden={hidden}>
+                  <ColorSwatch
+                    element="button"
+                    {...colorInfo}
+                    onClick={handleClick(colorInfo)}
+                    disabled={hidden}
+                  />
+                </li>
+              );
+            })}
           </ul>
         )}
       </Measure>

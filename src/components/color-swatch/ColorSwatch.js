@@ -2,7 +2,13 @@ import React from 'react';
 
 import './color-swatch.css';
 
-export const ColorSwatch = ({ color, label, element: Element, variant, ...props }) => {
+export const ColorSwatch = ({
+  color,
+  label,
+  element: Element,
+  variant,
+  ...props
+}) => {
   return (
     <Element
       className={['color-swatch', variant && `color-swatch--${variant}`]
