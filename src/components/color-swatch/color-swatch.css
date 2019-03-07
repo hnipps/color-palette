@@ -2,8 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 10rem;
-  width: 10rem;
+  height: env(--color-swatch-size);
+  width: env(--color-swatch-size);
   border-radius: 0.25rem;
   font-family: Arial, Helvetica, sans-serif;
   border: 0;

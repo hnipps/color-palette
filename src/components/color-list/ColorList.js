@@ -14,7 +14,7 @@ export const ColorList = ({ colorSwatches, handleClick }) => {
       {({ measureRef }) => (
         <ul ref={measureRef} className="color-list">
           {colorSwatches.map((colorInfo, i) => (
-            <li className="color-list__item">
+            <li key={i} className="color-list__item">
               <ColorSwatch
                 element="button"
                 {...colorInfo}

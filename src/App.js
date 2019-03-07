@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <div className="app">
         <header className="header">
-          <h1 className="header__content">Color World</h1>
+          <h1 className="header__content">Color Explorer</h1>
         </header>
         <div className="main">
           <ColorSwatch
