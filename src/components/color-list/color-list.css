@@ -11,5 +11,5 @@
 }
 
 .color-list__item {
-  margin: 0.25rem;
+  margin: env(--list-item-margin);
 }

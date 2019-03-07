@@ -2,10 +2,17 @@ import React from 'react';
 import Measure from 'react-measure';
 import { ColorSwatch } from '../color-swatch/ColorSwatch';
 
+import { colorSwatchSize, listItemMargin } from '../../js-env-variables';
+
 import './color-list.css';
+
+const isSwatchHidden = (listWidth, swatchIndex, swatchWidth) =>
+  swatchIndex + 1 > Math.floor(listWidth / (swatchWidth + 2 * listItemMargin));
 
 export const ColorList = ({ colorSwatches, handleClick }) => {
   const [listWidth, setListWidth] = React.useState(-1);
+  console.log(isSwatchHidden(100, 9, 10));
+
   return (
     <Measure
       bounds
@@ -19,6 +26,7 @@ export const ColorList = ({ colorSwatches, handleClick }) => {
                 element="button"
                 {...colorInfo}
                 onClick={handleClick(colorInfo)}
+                disabled={isSwatchHidden(listWidth, i, colorSwatchSize)}
               />
             </li>
           ))}
