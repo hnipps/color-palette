@@ -13,3 +13,19 @@
 .color-list__item {
   margin: env(--list-item-margin);
 }
+
+.color-list__container {
+  display: flex;
+}
+
+.color-list__controls {
+  border: none;
+  font-size: 2rem;
+  border: 3px solid lightgrey;
+  border-radius: 5px;
+}
+
+.color-list__controls:focus {
+  outline: none;
+  border: 3px solid black;
+}

@@ -14,24 +14,28 @@ export const ColorList = ({ colorSwatches, handleClick }) => {
   console.log(isSwatchHidden(100, 9, 10));
 
   return (
-    <Measure
-      bounds
-      onResize={contentRect => setListWidth(contentRect.bounds.width)}
-    >
-      {({ measureRef }) => (
-        <ul ref={measureRef} className="color-list">
-          {colorSwatches.map((colorInfo, i) => (
-            <li key={i} className="color-list__item">
-              <ColorSwatch
-                element="button"
-                {...colorInfo}
-                onClick={handleClick(colorInfo)}
-                disabled={isSwatchHidden(listWidth, i, colorSwatchSize)}
-              />
-            </li>
-          ))}
-        </ul>
-      )}
-    </Measure>
+    <div className="color-list__container">
+      <button className="color-list__controls">&lt;</button>
+      <Measure
+        bounds
+        onResize={contentRect => setListWidth(contentRect.bounds.width)}
+      >
+        {({ measureRef }) => (
+          <ul ref={measureRef} className="color-list">
+            {colorSwatches.map((colorInfo, i) => (
+              <li key={i} className="color-list__item">
+                <ColorSwatch
+                  element="button"
+                  {...colorInfo}
+                  onClick={handleClick(colorInfo)}
+                  disabled={isSwatchHidden(listWidth, i, colorSwatchSize)}
+                />
+              </li>
+            ))}
+          </ul>
+        )}
+      </Measure>
+      <button className="color-list__controls">&gt;</button>
+    </div>
   );
 };
