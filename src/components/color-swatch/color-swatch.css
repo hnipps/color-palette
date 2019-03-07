@@ -10,6 +10,11 @@
   font-size: 1.5rem;
 }
 
+.color-swatch:focus {
+  outline: none;
+  border: 3px solid black;
+}
+
 .color-swatch--large {
   height: 40rem;
   width: 40rem;
