@@ -5,6 +5,7 @@ import { ColorSwatch } from '../color-swatch/ColorSwatch';
 import { colorSwatchSize, listItemMargin } from '../../js-env-variables';
 
 import './color-list.css';
+import { ControlButton } from './components/ControlButton';
 
 const maxItemsPerLine = (lineWidth, itemSize) =>
   Math.floor(lineWidth / itemSize);
@@ -16,7 +17,7 @@ export const ColorList = ({ colorSwatches, handleClick }) => {
   const [listWidth, setListWidth] = React.useState(-1);
   return (
     <div className="color-list__container">
-      <button className="color-list__controls">&lt;</button>
+      <ControlButton variant="left" />
       <Measure
         bounds
         onResize={contentRect => setListWidth(contentRect.bounds.width)}
@@ -43,7 +44,7 @@ export const ColorList = ({ colorSwatches, handleClick }) => {
           </ul>
         )}
       </Measure>
-      <button className="color-list__controls">&gt;</button>
+      <ControlButton variant="right" />
     </div>
   );
 };

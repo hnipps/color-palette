@@ -1,0 +1,11 @@
+.control-button {
+  border: none;
+  font-size: 2rem;
+  border: 3px solid lightgrey;
+  border-radius: 5px;
+}
+
+.control-button:focus {
+  outline: none;
+  border: 3px solid black;
+}
