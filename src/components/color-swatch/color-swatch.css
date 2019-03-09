@@ -16,11 +16,17 @@
 }
 
 .color-swatch--large {
-  height: 40rem;
-  width: 40rem;
+  height: 20rem;
+  width: 20rem;
 }
 
 .color-swatch__label {
   text-align: center;
 }
 
+@media (min-width: 960px) {
+  .color-swatch--large {
+    height: 40rem;
+    width: 40rem;
+  }
+}
