@@ -7,17 +7,32 @@ import { colorSwatchSize, listItemMargin } from '../../js-env-variables';
 import './color-list.css';
 import { ControlButton } from './components/ControlButton';
 
-const maxItemsPerLine = (lineWidth, itemSize) =>
+const getMaxItemsPerLine = (lineWidth, itemSize) =>
   Math.floor(lineWidth / itemSize);
 
-const isSwatchHidden = (listWidth, swatchIndex, swatchWidth) =>
-  swatchIndex + 1 > maxItemsPerLine(listWidth, swatchWidth);
+const isItemHidden = (page, itemsPerPage, itemIndex) => {
+  const [firstItemIndex, lastItemIndex] = [
+    (page - 1) * itemsPerPage,
+    itemsPerPage * page - 1
+  ];
+
+  return !(itemIndex >= firstItemIndex && itemIndex <= lastItemIndex);
+};
 
 export const ColorList = ({ colorSwatches, handleClick }) => {
   const [listWidth, setListWidth] = React.useState(-1);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const colorSwatchTotalWidth = colorSwatchSize + 2 * listItemMargin;
+  const changePage = increment => _ => setCurrentPage(currentPage + increment);
+  const maxItemsPerLine = getMaxItemsPerLine(listWidth, colorSwatchTotalWidth);
+  const lastPage = colorSwatches.length / maxItemsPerLine;
   return (
     <div className="color-list__container">
-      <ControlButton variant="left" />
+      <ControlButton
+        variant="left"
+        disabled={currentPage <= 1}
+        onClick={changePage(-1)}
+      />
       <Measure
         bounds
         onResize={contentRect => setListWidth(contentRect.bounds.width)}
@@ -25,11 +40,7 @@ export const ColorList = ({ colorSwatches, handleClick }) => {
         {({ measureRef }) => (
           <ul ref={measureRef} className="color-list">
             {colorSwatches.map((colorInfo, i) => {
-              const hidden = isSwatchHidden(
-                listWidth,
-                i,
-                colorSwatchSize + 2 * listItemMargin
-              );
+              const hidden = isItemHidden(currentPage, maxItemsPerLine, i);
               return (
                 <li key={i} className="color-list__item" hidden={hidden}>
                   <ColorSwatch
@@ -44,7 +55,11 @@ export const ColorList = ({ colorSwatches, handleClick }) => {
           </ul>
         )}
       </Measure>
-      <ControlButton variant="right" />
+      <ControlButton
+        variant="right"
+        disabled={currentPage >= lastPage}
+        onClick={changePage(1)}
+      />
     </div>
   );
 };
